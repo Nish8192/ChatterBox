@@ -24,12 +24,10 @@ app.controller('dashController', ['chatterFactory','socketFactory', '$scope','$r
                 $scope.errors = data.errors;
             }
             else {
-                console.log(data.user);
                 $scope.channels = data.channels;
                 $scope.user = data.user;
                 $scope.conversations = data.conversations;
                 $scope.otherUsers = data.otherUsers;
-                console.log($scope.user);
                 socketFactory.signIn($scope.user.user_name)
             }
         })
@@ -40,7 +38,6 @@ app.controller('dashController', ['chatterFactory','socketFactory', '$scope','$r
     $scope.createConversation = function(id){
         $scope.newConversation._user1 = $cookies.get("user_id")
         chatterFactory.createConversation(id, $scope.newConversation, function(data){
-            console.log(data);
             if(data.errors){
                 $scope.errors = data.errors;
             }
@@ -58,7 +55,6 @@ app.controller('dashController', ['chatterFactory','socketFactory', '$scope','$r
                 $scope.errors = data.errors;
             }
             else {
-                console.log(data.channel);
             }
             $scope.newChannel = {};
             index();
@@ -76,7 +72,7 @@ app.controller('dashController', ['chatterFactory','socketFactory', '$scope','$r
         $scope.newMessage._user = $cookies.get("user_id")
         chatterFactory.createMessage($cookies.get("currChat"), $scope.newMessage, function(data){
             if(data.errors){
-                console.log(data.errors);
+
                 $scope.errors = data.errors
             }
             else{
@@ -93,8 +89,6 @@ app.controller('dashController', ['chatterFactory','socketFactory', '$scope','$r
         $cookies.put("currType", "conversation")
         $scope.currType = false
         chatterFactory.loadConversation(id, function(data){
-            console.log(data);
-            console.log($scope.currType);
             if(data.errors){
                 $scope.errors = data.errors;
             }
@@ -135,7 +129,6 @@ app.controller('dashController', ['chatterFactory','socketFactory', '$scope','$r
     }
 
     $rootScope.showNotification = function(user){
-        console.log(user);
         $scope.sysNotification = user;
     }
 

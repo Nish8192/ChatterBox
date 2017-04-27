@@ -14,7 +14,6 @@ app.controller('loginController', ['chatterFactory','$scope','$location','$route
     $scope.login = function(){
         chatterFactory.createUser($scope.returningUser, function(data){
             if(data.errors){
-                console.log(data.errors);
                 $scope.errors = data.errors;
                 $location.url('/')
             }
@@ -31,7 +30,6 @@ app.controller('loginController', ['chatterFactory','$scope','$location','$route
     $scope.reg = function(){
         chatterFactory.createUser($scope.newUser, function(data){
             if(data.errors){
-                console.log(data.errors);
                 $scope.errors = data.errors;
                 $location.url('/')
             }
