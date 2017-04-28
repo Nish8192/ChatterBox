@@ -77,9 +77,14 @@ app.controller('dashController', ['chatterFactory','socketFactory', '$scope','$r
             }
             else{
                 socketFactory.newMessage($cookies.get("currChat"), $scope.newMessage.type);
+                playSound()
             }
             $scope.newMessage = {};
         })
+    }
+    var playSound = function(){
+        var audio = new Audio('assets/wav/sent.wav');
+        audio.play();
     }
 
     $rootScope.loadConversation = function(id){
